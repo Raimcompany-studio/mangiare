@@ -437,6 +437,7 @@ footer small{font-size:.78rem;letter-spacing:.14em}
 .chalk-cat.reveal.is-in{transform:rotate(-1.2deg)}
 .course-box.reveal.is-in:hover{transform:rotate(-1deg) translateY(-4px)}
 .set-line.reveal.is-in:hover{transform:rotate(.8deg) scale(1.02)}
+.shortcut.reveal.is-in:hover{transform:rotate(-1deg) translateY(-4px)}
 .polaroid.reveal{transform:translateY(28px) rotate(0)}
 .polaroid.reveal.is-in:nth-child(odd){transform:translateY(0) rotate(-1.6deg)}
 .polaroid.reveal.is-in:nth-child(even){transform:translateY(0) rotate(1.4deg)}
@@ -450,6 +451,103 @@ footer small{font-size:.78rem;letter-spacing:.14em}
   *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+/* ===== ページ切り替え ===== */
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.page{display:none}
+.page.active{display:block;animation:pageIn .45s ease-out}
+
+/* ===== TOPICS カルーセル ===== */
+.topics{max-width:1060px;margin:0 auto;padding:64px 28px 70px}
+.topics .sec-head{margin-bottom:34px}
+.carousel{position:relative}
+.car-track{
+  display:flex;gap:20px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding:6px 2px 18px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.car-track::-webkit-scrollbar{display:none}
+.car-slide{
+  flex:0 0 78%;max-width:420px;
+  scroll-snap-align:center;
+  background:#FFFEFA;
+  border:2px solid #2C2620;
+  border-radius:200px 14px 190px 14px/14px 190px 14px 200px;
+  overflow:hidden;
+  box-shadow:4px 5px 0 rgba(44,38,32,.13);
+}
+@media(min-width:760px){.car-slide{flex-basis:44%}}
+.car-slide .photo-ph{aspect-ratio:16/10;border:none;border-bottom:2px solid #2C2620;border-radius:0}
+.car-slide .car-body{padding:18px 22px 22px}
+.car-slide .car-tag{
+  display:inline-block;
+  font-family:"Yomogi",cursive;font-size:.8rem;font-weight:700;
+  color:#D2362E;border:1.5px solid #D2362E;
+  border-radius:100px 6px 100px 6px/6px 90px 6px 90px;
+  padding:1px 12px;margin-bottom:8px;transform:rotate(-1.5deg);
+}
+.car-slide h4{font-family:"Shippori Mincho",serif;font-size:1.05rem;line-height:1.7}
+.car-slide p{font-size:.85rem;color:var(--muted);margin-top:6px}
+.car-nav{
+  display:flex;justify-content:center;gap:10px;margin-top:8px;align-items:center;
+}
+.car-dot{
+  width:9px;height:9px;border-radius:50%;
+  border:1.5px solid var(--wine);background:transparent;
+  padding:0;cursor:pointer;transition:background .3s;
+}
+.car-dot.on{background:var(--wine)}
+.car-btn{
+  border:1.5px solid var(--wine);background:var(--paper);
+  color:var(--wine);width:34px;height:34px;border-radius:50%;
+  font-size:1rem;cursor:pointer;line-height:1;
+  transition:background .3s,color .3s;
+}
+.car-btn:hover{background:var(--wine);color:var(--paper)}
+
+/* ===== ホームのショートカット ===== */
+.shortcuts{
+  max-width:1060px;margin:0 auto;padding:0 28px 84px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+@media(max-width:760px){.shortcuts{grid-template-columns:repeat(2,1fr)}}
+.shortcut{
+  border:2px solid #2C2620;background:#FFFEFA;
+  border-radius:160px 12px 150px 12px/12px 150px 12px 160px;
+  padding:20px 12px;text-align:center;cursor:pointer;
+  font-family:"Yomogi",cursive;font-size:1rem;font-weight:700;
+  transition:transform .25s,box-shadow .25s;
+}
+.shortcut small{display:block;font-family:"Italiana",serif;font-weight:400;color:var(--wine);letter-spacing:.14em;font-size:.78rem;margin-top:4px}
+.shortcut:hover{transform:rotate(-1deg) translateY(-4px);box-shadow:3px 5px 0 rgba(44,38,32,.15)}
+
+/* ===== モバイルナビ ===== */
+.nav-toggle{
+  display:none;
+  background:none;border:1.5px solid var(--wine);color:var(--wine);
+  border-radius:8px;padding:6px 12px;
+  font-family:"Yomogi",cursive;font-size:.95rem;cursor:pointer;
+}
+@media(max-width:760px){
+  .nav-toggle{display:block}
+  nav{
+    display:none;
+    position:absolute;top:100%;left:0;right:0;
+    background:var(--paper);
+    border-bottom:2px solid var(--wine);
+    box-shadow:0 14px 26px rgba(44,38,32,.18);
+  }
+  nav.open{display:block;animation:pageIn .3s ease-out}
+  nav ul{flex-direction:column;gap:0;padding:8px 0}
+  nav li{border-top:1px dashed var(--hairline)}
+  nav li:first-child{border-top:none}
+  nav a{display:block;padding:15px 28px;font-size:1rem;font-family:"Yomogi",cursive}
+}
 </style>
 </head>
 <body>
@@ -457,22 +555,25 @@ footer small{font-size:.78rem;letter-spacing:.14em}
 
 <header>
   <div class="header-in">
-    <a class="logo" href="#top">
+    <a class="logo" href="#home" data-page="home">
       <span class="latin">Mangiare</span><small class="serif">マンジャーレくれは</small>
     </a>
-    <nav aria-label="メイン">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">メニュー ☰</button>
+    <nav id="main-nav" aria-label="メイン">
       <ul>
-        <li><a href="#about">こだわり</a></li>
-        <li><a href="#menu">メニュー</a></li>
-        <li><a href="#gallery">ギャラリー</a></li>
-        <li><a href="#news">お知らせ</a></li>
-        <li><a href="#access">アクセス</a></li>
+        <li><a href="#home" data-page="home">ホーム</a></li>
+        <li><a href="#menu" data-page="menu">メニュー</a></li>
+        <li><a href="#gallery" data-page="gallery">ギャラリー</a></li>
+        <li><a href="#news" data-page="news">お知らせ</a></li>
+        <li><a href="#access" data-page="access">アクセス</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="top">
+  <!-- ============ ホーム ============ -->
+  <div class="page active" id="page-home">
   <!-- ===== Hero ===== -->
   <div class="hero">
     <svg class="doodle d1" width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="31" r="17" fill="none" stroke="#A33A36" stroke-width="2.5"/><path d="M27 14c-2-5 2-9 2-9M21 15c2-3 6-4 6-4s4 1 6 4" fill="none" stroke="#3E4D24" stroke-width="2.5" stroke-linecap="round"/></svg>
@@ -500,6 +601,54 @@ footer small{font-size:.78rem;letter-spacing:.14em}
   <div class="ticker" aria-hidden="true">
     <div class="ticker-in">
       <span class="latin">MANGIARE</span><span>✳</span><span>食べておくんなはれ!!</span><span>✳</span><span class="latin">BUON APPETITO</span><span>✳</span><span>池田・くれはの里</span><span>✳</span><span class="latin">MANGIARE</span><span>✳</span><span>食べておくんなはれ!!</span><span>✳</span><span class="latin">BUON APPETITO</span><span>✳</span><span>池田・くれはの里</span><span>✳</span>
+    </div>
+  </div>
+
+  <!-- ===== TOPICS カルーセル ===== -->
+  <div class="topics">
+    <div class="sec-head">
+      <span class="latin">Topics</span>
+      <span class="jp">トピックス</span>
+    </div>
+    <div class="carousel">
+      <div class="car-track" id="carTrack">
+        <article class="car-slide">
+          <div class="photo-ph">季節のおすすめ料理の写真</div>
+          <div class="car-body">
+            <span class="car-tag">季節限定</span>
+            <h4>初夏のおすすめメニュー、はじまりました</h4>
+            <p>旬の食材を使った季節の一皿をご用意しています。（サンプル）</p>
+          </div>
+        </article>
+        <article class="car-slide">
+          <div class="photo-ph">ランチの写真</div>
+          <div class="car-body">
+            <span class="car-tag">ランチ</span>
+            <h4>お昼はお得なランチコースをどうぞ</h4>
+            <p>メイン料理に+280円からコースに。詳しくはメニューへ。</p>
+          </div>
+        </article>
+        <article class="car-slide">
+          <div class="photo-ph">ワインの写真</div>
+          <div class="car-body">
+            <span class="car-tag">ドリンク</span>
+            <h4>料理に合うワイン、揃えてます</h4>
+            <p>グラスワインからボトルまで。お気軽にご相談ください。（サンプル）</p>
+          </div>
+        </article>
+        <article class="car-slide">
+          <div class="photo-ph">店内の写真</div>
+          <div class="car-body">
+            <span class="car-tag">お知らせ</span>
+            <h4>貸切・パーティーのご相談も</h4>
+            <p>記念日やご宴会など、お気軽にお問い合わせください。（サンプル）</p>
+          </div>
+        </article>
+      </div>
+      <div class="car-nav" id="carNav">
+        <button class="car-btn" id="carPrev" aria-label="前へ">‹</button>
+        <button class="car-btn" id="carNext" aria-label="次へ">›</button>
+      </div>
     </div>
   </div>
 
@@ -533,6 +682,17 @@ footer small{font-size:.78rem;letter-spacing:.14em}
     </div>
   </section>
 
+  <!-- ホームのショートカット -->
+  <div class="shortcuts">
+    <button class="shortcut" data-page="menu">お品書き<small>MENU</small></button>
+    <button class="shortcut" data-page="gallery">写真<small>GALLERIA</small></button>
+    <button class="shortcut" data-page="news">お知らせ<small>NOTIZIE</small></button>
+    <button class="shortcut" data-page="access">アクセス<small>ACCESSO</small></button>
+  </div>
+  </div><!-- /page-home -->
+
+  <!-- ============ メニュー ============ -->
+  <div class="page" id="page-menu">
   <!-- ===== Menu ===== -->
   <div class="menu-wrap">
     <section id="menu">
@@ -625,7 +785,10 @@ footer small{font-size:.78rem;letter-spacing:.14em}
       <p class="sample-note">※ 取材記事の写真をもとにした内容です。最新の価格・メニューに合わせて調整してください。</p>
     </section>
   </div>
+  </div><!-- /page-menu -->
 
+  <!-- ============ ギャラリー ============ -->
+  <div class="page" id="page-gallery">
   <!-- ===== Gallery ===== -->
   <section id="gallery">
     <div class="sec-head">
@@ -641,7 +804,10 @@ footer small{font-size:.78rem;letter-spacing:.14em}
       <figure class="polaroid"><div class="photo-ph">外観の写真</div><figcaption>くれはの里の交差点角</figcaption></figure>
     </div>
   </section>
+  </div><!-- /page-gallery -->
 
+  <!-- ============ お知らせ ============ -->
+  <div class="page" id="page-news">
   <!-- ===== News / SNS ===== -->
   <div class="menu-wrap">
     <section id="news">
@@ -663,7 +829,10 @@ footer small{font-size:.78rem;letter-spacing:.14em}
       </div>
     </section>
   </div>
+  </div><!-- /page-news -->
 
+  <!-- ============ アクセス ============ -->
+  <div class="page" id="page-access">
   <!-- ===== Access ===== -->
   <section id="access" class="access">
     <div class="sec-head">
@@ -686,6 +855,7 @@ footer small{font-size:.78rem;letter-spacing:.14em}
       <div class="photo-ph map-ph">Google マップ埋め込み</div>
     </div>
   </section>
+  </div><!-- /page-access -->
 </main>
 
 <footer>
@@ -695,9 +865,89 @@ footer small{font-size:.78rem;letter-spacing:.14em}
 </footer>
 <script>
 (function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== ページ切り替え ===== */
+  var pages = document.querySelectorAll('.page');
+  var nav = document.getElementById('main-nav');
+  var toggle = document.querySelector('.nav-toggle');
+
+  function showPage(name){
+    var target = document.getElementById('page-' + name);
+    if(!target) return;
+    pages.forEach(function(p){ p.classList.remove('active'); });
+    target.classList.add('active');
+    window.scrollTo({top:0, behavior: reduced ? 'auto' : 'smooth'});
+    if(nav){ nav.classList.remove('open'); toggle && toggle.setAttribute('aria-expanded','false'); }
+  }
+  document.querySelectorAll('[data-page]').forEach(function(el){
+    el.addEventListener('click', function(ev){
+      ev.preventDefault();
+      var name = el.getAttribute('data-page');
+      location.hash = name;
+      showPage(name);
+    });
+  });
+  window.addEventListener('hashchange', function(){
+    showPage(location.hash.replace('#','') || 'home');
+  });
+  if(location.hash && location.hash !== '#home'){
+    showPage(location.hash.replace('#',''));
+  }
+
+  /* ===== モバイルナビ ===== */
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  /* ===== TOPICS カルーセル ===== */
+  var track = document.getElementById('carTrack');
+  if(track){
+    var slides = track.querySelectorAll('.car-slide');
+    var navBox = document.getElementById('carNav');
+    var prev = document.getElementById('carPrev');
+    var next = document.getElementById('carNext');
+    var idx = 0, timer = null;
+
+    // ドット生成
+    var dots = [];
+    slides.forEach(function(_, i){
+      var d = document.createElement('button');
+      d.className = 'car-dot' + (i===0 ? ' on' : '');
+      d.setAttribute('aria-label', (i+1) + '枚目へ');
+      d.addEventListener('click', function(){ go(i, true); });
+      navBox.insertBefore(d, next);
+      dots.push(d);
+    });
+
+    function go(i, user){
+      idx = (i + slides.length) % slides.length;
+      var s = slides[idx];
+      track.scrollTo({left: s.offsetLeft - (track.clientWidth - s.clientWidth)/2, behavior: reduced ? 'auto' : 'smooth'});
+      dots.forEach(function(d, j){ d.classList.toggle('on', j===idx); });
+      if(user) restart();
+    }
+    prev.addEventListener('click', function(){ go(idx-1, true); });
+    next.addEventListener('click', function(){ go(idx+1, true); });
+
+    // 自動でゆっくり流す
+    function restart(){
+      if(timer) clearInterval(timer);
+      if(!reduced) timer = setInterval(function(){ go(idx+1); }, 4500);
+    }
+    restart();
+    track.addEventListener('touchstart', function(){ if(timer) clearInterval(timer); }, {passive:true});
+    track.addEventListener('mouseenter', function(){ if(timer) clearInterval(timer); });
+    track.addEventListener('mouseleave', restart);
+  }
+
+  /* ===== スクロールで浮き上がる ===== */
+  if(reduced) return;
   var targets = document.querySelectorAll(
-    '.sec-head, .about-text, .about-photo, .paper-card, .chalkboard, .sample-note, .polaroid, .news-list li, .sns-box, .access dl, .map-ph'
+    '.sec-head, .about-text, .about-photo, .paper-card, .chalkboard, .sample-note, .polaroid, .news-list li, .sns-box, .access dl, .map-ph, .car-slide, .shortcut'
   );
   targets.forEach(function(el){ el.classList.add('reveal'); });
   var io = new IntersectionObserver(function(entries){
