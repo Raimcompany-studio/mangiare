@@ -9,7 +9,7 @@
 <meta name="description" content="大阪府池田市のイタリアン・フレンチ「マンジャーレくれは」。現地イタリア・フランスと日本の素材にこだわった家庭的な料理をお楽しみください。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Caveat:wght@500;600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:only light;
@@ -176,27 +176,111 @@ section{max-width:1060px;margin:0 auto;padding:84px 28px}
 
 /* ===== Menu ===== */
 .menu-wrap{background:var(--paper-deep)}
-.menu-cards{display:grid;grid-template-columns:1fr 1fr;gap:34px}
-@media(max-width:820px){.menu-cards{grid-template-columns:1fr}}
-.menu-card{
-  background:var(--paper);
-  border:1px solid var(--wine);
-  outline:1px solid var(--wine);outline-offset:4px;
-  padding:42px 36px;
+.menu-cards{display:grid;grid-template-columns:1fr;gap:60px;max-width:860px;margin:0 auto}
+
+/* --- 手描きランチメニュー(紙) --- */
+.paper-card{
+  background:#FFFEFA;
+  border:2.5px solid #2C2620;
+  border-radius:255px 18px 225px 18px/18px 225px 18px 255px;
+  padding:40px 36px 34px;
+  box-shadow:4px 6px 0 rgba(44,38,32,.16);
+  transform:rotate(-.4deg);
 }
-.menu-card h3{
-  text-align:center;font-family:"Italiana",serif;
-  font-size:1.9rem;letter-spacing:.2em;color:var(--wine);font-weight:400;
+.paper-card h3{
+  text-align:center;
+  font-family:"Caveat",cursive;
+  font-size:2.3rem;color:#1F6FB2;letter-spacing:.08em;font-weight:600;
 }
-.menu-card .time{
-  text-align:center;font-size:.78rem;letter-spacing:.2em;
-  color:var(--basil);margin:6px 0 28px;
+.paper-card .time{
+  text-align:center;font-family:"Yomogi",cursive;
+  font-size:.95rem;color:var(--muted);margin:0 0 26px;
 }
-.menu-item{
-  display:flex;align-items:baseline;gap:10px;
-  margin-bottom:20px;
+.lunch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:680px){.lunch-grid{grid-template-columns:1fr}}
+.course-box{
+  border:2px solid #2C2620;
+  border-radius:160px 12px 170px 12px/12px 165px 12px 160px;
+  padding:20px 18px;
+  transition:transform .25s ease,box-shadow .25s ease;
 }
-.menu-item .name{font-family:"Shippori Mincho",serif;font-size:1rem;white-space:nowrap}
+.course-box:hover{transform:rotate(-1deg) translateY(-4px);box-shadow:3px 5px 0 rgba(44,38,32,.15)}
+.course-box .c-name{
+  font-family:"Caveat",cursive;font-size:1.5rem;font-weight:600;
+}
+.course-box .c-price{
+  font-family:"Yomogi",cursive;color:#D2362E;font-size:1.15rem;font-weight:700;
+}
+.course-box .c-price small{font-size:.7em;color:var(--muted)}
+.course-box ul{list-style:none;margin-top:10px}
+.course-box li{
+  font-family:"Yomogi",cursive;font-size:.95rem;line-height:1.8;
+  padding-left:1.3em;position:relative;
+}
+.course-box li::before{content:"○";position:absolute;left:0;color:var(--basil);font-size:.8em;top:.15em}
+.lunch-sets{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:680px){.lunch-sets{grid-template-columns:1fr}}
+.set-line{
+  border:2px solid #2C2620;
+  border-radius:14px 150px 14px 160px/150px 14px 160px 14px;
+  padding:16px 20px;
+  font-family:"Yomogi",cursive;font-size:.98rem;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  transition:transform .25s ease;
+}
+.set-line:hover{transform:rotate(.8deg) scale(1.02)}
+.set-line b{font-weight:700}
+.set-line .c-price{white-space:nowrap}
+.paper-note{
+  margin-top:20px;text-align:center;
+  font-family:"Yomogi",cursive;font-size:.88rem;color:var(--muted);
+}
+
+/* --- 黒板ディナーメニュー --- */
+.chalkboard{
+  background:
+    radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.05),transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(255,255,255,.04),transparent 50%),
+    #31453A;
+  border:10px solid #6B4A2F;
+  border-radius:6px;
+  box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 8px 22px rgba(44,38,32,.25);
+  padding:38px 36px 32px;
+  color:#F3EDD8;
+}
+.chalkboard h3{
+  text-align:center;
+  font-family:"Caveat",cursive;font-weight:500;
+  font-size:2.5rem;color:#BFD9EE;letter-spacing:.1em;
+  text-shadow:0 0 6px rgba(191,217,238,.35);
+}
+.chalkboard .time{
+  text-align:center;font-family:"Yomogi",cursive;
+  font-size:.92rem;color:#D9CFA8;margin:0 0 26px;
+}
+.chalk-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 40px}
+@media(max-width:680px){.chalk-cols{grid-template-columns:1fr}}
+.chalk-cat{
+  display:inline-block;
+  font-family:"Yomogi",cursive;font-size:1.05rem;font-weight:700;
+  color:#F2D26B;
+  border:2px solid #F2D26B;border-radius:120px 8px 120px 8px/8px 110px 8px 110px;
+  padding:2px 16px;margin:18px 0 10px;
+  transform:rotate(-1.2deg);
+}
+.chalk-cat.pink{color:#F2A8C4;border-color:#F2A8C4}
+.chalk-item{
+  display:flex;align-items:baseline;gap:8px;
+  font-family:"Yomogi",cursive;font-size:.95rem;line-height:1.7;
+  margin-bottom:8px;
+}
+.chalk-item .dots{flex:1;border-bottom:1px dotted rgba(243,237,216,.45);transform:translateY(-5px);min-width:16px}
+.chalk-item .price{color:#F2A8C4;white-space:nowrap;letter-spacing:.04em}
+.chalk-note{
+  margin-top:22px;text-align:center;
+  font-family:"Yomogi",cursive;font-size:.88rem;color:#D9CFA8;
+}
+.menu-item{display:flex;align-items:baseline;gap:10px;margin-bottom:20px}
 .menu-item .dots{flex:1;border-bottom:1px dotted rgba(44,38,32,.55);transform:translateY(-5px)}
 .menu-item .price{font-size:.95rem;color:var(--wine);white-space:nowrap}
 .menu-item-note{font-size:.8rem;color:var(--muted);margin:-14px 0 20px}
@@ -290,6 +374,55 @@ footer small{font-size:.78rem;letter-spacing:.14em}
   60%{opacity:1;transform:rotate(-3deg) scale(.94)}
   100%{opacity:1;transform:rotate(-3deg) scale(1)}
 }
+@keyframes floaty{
+  0%,100%{transform:translateY(0) rotate(var(--r,0deg))}
+  50%{transform:translateY(-12px) rotate(calc(var(--r,0deg) + 4deg))}
+}
+@keyframes ticker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@keyframes wiggle{
+  0%,100%{transform:rotate(-1.2deg)}
+  50%{transform:rotate(1.2deg)}
+}
+
+/* 流れる帯 */
+.ticker{
+  overflow:hidden;white-space:nowrap;
+  border-top:1px solid var(--hairline);
+  border-bottom:1px solid var(--hairline);
+  background:var(--paper);
+  padding:12px 0;
+}
+.ticker-in{
+  display:inline-block;
+  animation:ticker 26s linear infinite;
+}
+.ticker-in span{
+  font-family:"Yomogi",cursive;
+  font-size:1.05rem;color:var(--wine);
+  margin:0 1.6em;
+}
+.ticker-in .latin{color:var(--basil);font-size:1.1rem;letter-spacing:.18em}
+.ticker:hover .ticker-in{animation-play-state:paused}
+
+/* ふわふわ漂う食材イラスト */
+.doodle{
+  position:absolute;pointer-events:none;
+  animation:floaty 5.5s ease-in-out infinite;
+  opacity:.9;
+}
+.doodle.d1{top:13%;left:6%;--r:-8deg;animation-delay:.3s}
+.doodle.d2{top:22%;right:7%;--r:10deg;animation-delay:1.2s;animation-duration:6.5s}
+.doodle.d3{bottom:24%;left:10%;--r:5deg;animation-delay:.8s;animation-duration:7s}
+.doodle.d4{bottom:30%;right:9%;--r:-6deg;animation-delay:1.8s}
+@media(max-width:760px){.doodle{transform:scale(.7)}.doodle.d3,.doodle.d4{display:none}}
+
+.chalk-cat{transition:transform .3s}
+.chalk-cat:hover{animation:wiggle .5s ease-in-out}
+.chalk-item:hover .price{color:#FFD9E8;text-shadow:0 0 8px rgba(242,168,196,.5)}
+
 .hero .eyebrow,.hero h1,.hero .kureha,.hero .lead,.hero .hero-info{
   animation:rise .8s ease-out both;
 }
@@ -300,6 +433,10 @@ footer small{font-size:.78rem;letter-spacing:.14em}
 .hero .stamp{animation:stampIn .6s ease-out .6s both}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.is-in{opacity:1;transform:translateY(0)}
+.paper-card.reveal.is-in{transform:rotate(-.4deg)}
+.chalk-cat.reveal.is-in{transform:rotate(-1.2deg)}
+.course-box.reveal.is-in:hover{transform:rotate(-1deg) translateY(-4px)}
+.set-line.reveal.is-in:hover{transform:rotate(.8deg) scale(1.02)}
 .polaroid.reveal{transform:translateY(28px) rotate(0)}
 .polaroid.reveal.is-in:nth-child(odd){transform:translateY(0) rotate(-1.6deg)}
 .polaroid.reveal.is-in:nth-child(even){transform:translateY(0) rotate(1.4deg)}
@@ -338,6 +475,10 @@ footer small{font-size:.78rem;letter-spacing:.14em}
 <main id="top">
   <!-- ===== Hero ===== -->
   <div class="hero">
+    <svg class="doodle d1" width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="31" r="17" fill="none" stroke="#A33A36" stroke-width="2.5"/><path d="M27 14c-2-5 2-9 2-9M21 15c2-3 6-4 6-4s4 1 6 4" fill="none" stroke="#3E4D24" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <svg class="doodle d2" width="50" height="56" viewBox="0 0 50 56" aria-hidden="true"><path d="M25 8c8 4 12 12 10 22-2 9-10 13-10 13s-8-4-10-13C13 20 17 12 25 8z" fill="none" stroke="#3E4D24" stroke-width="2.5"/><path d="M25 14v26" stroke="#3E4D24" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg class="doodle d3" width="44" height="62" viewBox="0 0 44 62" aria-hidden="true"><path d="M10 8h24c0 12-5 18-12 19v22m-8 0h16M10 8c0 8 3 14 8 17" fill="none" stroke="#6E2227" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <svg class="doodle d4" width="36" height="62" viewBox="0 0 36 62" aria-hidden="true"><path d="M12 6v14M18 6v14M24 6v14M18 20v36M12 14c0 5 3 8 6 8s6-3 6-8" fill="none" stroke="#9C742B" stroke-width="2.5" stroke-linecap="round"/></svg>
     <p class="eyebrow">OSAKA IKEDA — ITALIANO &amp; FRANCESE</p>
     <h1>MANGIARE</h1>
     <p class="kureha serif">マンジャーレくれは</p>
@@ -352,6 +493,13 @@ footer small{font-size:.78rem;letter-spacing:.14em}
       <div><b>Dinner</b>17:30 – 21:00</div>
       <div><b>定休日</b>水曜日</div>
       <div><b>TEL</b>072-763-0338</div>
+    </div>
+  </div>
+
+  <!-- ===== Ticker ===== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-in">
+      <span class="latin">MANGIARE</span><span>✳</span><span>食べておくんなはれ!!</span><span>✳</span><span class="latin">BUON APPETITO</span><span>✳</span><span>池田・くれはの里</span><span>✳</span><span class="latin">MANGIARE</span><span>✳</span><span>食べておくんなはれ!!</span><span>✳</span><span class="latin">BUON APPETITO</span><span>✳</span><span>池田・くれはの里</span><span>✳</span>
     </div>
   </div>
 
@@ -393,48 +541,88 @@ footer small{font-size:.78rem;letter-spacing:.14em}
         <span class="jp">お品書き</span>
       </div>
       <div class="menu-cards">
-        <div class="menu-card">
-          <h3>PRANZO</h3>
-          <p class="time">ランチ｜11:30 – 15:00</p>
-          <div class="menu-item">
-            <span class="name serif">本日のパスタランチ</span>
-            <span class="dots"></span><span class="price">¥0,000</span>
+
+        <!-- 手描き風ランチメニュー -->
+        <div class="paper-card">
+          <h3>LUNCH MENU</h3>
+          <p class="time">ランチ｜11:30 – 15:00　メイン料理にプラスで</p>
+          <div class="lunch-grid">
+            <div class="course-box">
+              <span class="c-name">A course</span>
+              <span class="c-price">+¥280</span>
+              <ul>
+                <li>サラダ（生野菜／カポナータ／温野菜）</li>
+                <li>又は ミネストローネスープ</li>
+              </ul>
+            </div>
+            <div class="course-box">
+              <span class="c-name">B course</span>
+              <span class="c-price">+¥680</span>
+              <ul>
+                <li>サラダ（お選びください）</li>
+                <li>パン</li>
+                <li>ドルチェ</li>
+              </ul>
+            </div>
+            <div class="course-box">
+              <span class="c-name">C course</span>
+              <span class="c-price">+¥1,500</span>
+              <ul>
+                <li>アンティパスト（前菜）の盛り合わせ</li>
+                <li>パン</li>
+                <li>ドルチェ</li>
+              </ul>
+            </div>
           </div>
-          <p class="menu-item-note">前菜・サラダ・パン・ドリンク付き</p>
-          <div class="menu-item">
-            <span class="name serif">週替わりランチコース</span>
-            <span class="dots"></span><span class="price">¥0,000</span>
+          <div class="lunch-sets">
+            <div class="set-line">
+              <span><b>ペンネランチ</b><br><small>サラダ＋ペンネ（手作りベーコンのピリ辛トマトソース）</small></span>
+              <span class="c-price">¥1,380</span>
+            </div>
+            <div class="set-line">
+              <span><b>おそうざい・スープセット</b><br><small>おそうざいの盛り合わせ＋ミネストローネスープ＋パン</small></span>
+              <span class="c-price">¥1,580</span>
+            </div>
           </div>
-          <p class="menu-item-note">前菜・パスタ・メイン・ドルチェ・ドリンク</p>
-          <div class="menu-item">
-            <span class="name serif">シェフのおまかせコース</span>
-            <span class="dots"></span><span class="price">¥0,000</span>
-          </div>
-          <p class="menu-item-note">記念日やゆっくりしたい日に</p>
-          <p class="menu-foot">※メインは牛フィレ肉やサーモンへのアップグレードも承ります。</p>
+          <p class="paper-note">※ お昼のお席は2時間ほどでお願いしております</p>
         </div>
-        <div class="menu-card">
-          <h3>CENA</h3>
-          <p class="time">ディナー｜17:30 – 21:00</p>
-          <div class="menu-item">
-            <span class="name serif">ディナーコース</span>
-            <span class="dots"></span><span class="price">¥0,000〜</span>
+
+        <!-- 黒板風グランドメニュー -->
+        <div class="chalkboard">
+          <h3>Menu</h3>
+          <p class="time">パスタ・ピッツァ・お肉・お魚いろいろ</p>
+          <div class="chalk-cols">
+            <div>
+              <span class="chalk-cat">スパゲティ</span>
+              <div class="chalk-item"><span>フルーツトマトとモッツァレラチーズのトマトソース</span><span class="dots"></span><span class="price">1,200</span></div>
+              <div class="chalk-item"><span>手作りベーコンのピリ辛トマトソース</span><span class="dots"></span><span class="price">1,380</span></div>
+              <div class="chalk-item"><span>小松菜、イワシのペペロンチーノ</span><span class="dots"></span><span class="price">1,380</span></div>
+              <div class="chalk-item"><span>明太子とホタテ、レモン風味</span><span class="dots"></span><span class="price">1,500</span></div>
+              <div class="chalk-item"><span>手作りベーコンのカルボナーラ</span><span class="dots"></span><span class="price">1,500</span></div>
+              <div class="chalk-item"><span>ボロニェーゼ（ミートソース）</span><span class="dots"></span><span class="price">1,380</span></div>
+              <span class="chalk-cat pink">ピッツァ</span>
+              <div class="chalk-item"><span>マルゲリータ</span><span class="dots"></span><span class="price">1,500</span></div>
+              <div class="chalk-item"><span>自家製オイルサーディンとトマト</span><span class="dots"></span><span class="price">1,600</span></div>
+              <div class="chalk-item"><span>ブルーチーズとリンゴ</span><span class="dots"></span><span class="price">1,800</span></div>
+            </div>
+            <div>
+              <span class="chalk-cat pink">魚料理</span>
+              <div class="chalk-item"><span>真鯛のポワレ 黒酢ソース</span><span class="dots"></span><span class="price">2,000</span></div>
+              <div class="chalk-item"><span>サーモンのワイン蒸し 香草クリームソース</span><span class="dots"></span><span class="price">2,300</span></div>
+              <span class="chalk-cat">肉料理</span>
+              <div class="chalk-item"><span>地鶏のあぶりオーブン焼き ビネガーソース</span><span class="dots"></span><span class="price">2,300</span></div>
+              <div class="chalk-item"><span>奄美産島黒豚スペアリブといんげん豆のトマト煮</span><span class="dots"></span><span class="price">2,300</span></div>
+              <div class="chalk-item"><span>牛フィレのステーキ バルサミコソース</span><span class="dots"></span><span class="price">2,900</span></div>
+              <span class="chalk-cat">グラタン</span>
+              <div class="chalk-item"><span>ラザニエのミートグラタン</span><span class="dots"></span><span class="price">1,800</span></div>
+              <div class="chalk-item"><span>サーモンとポテトのマカロニクリームグラタン</span><span class="dots"></span><span class="price">2,000</span></div>
+            </div>
           </div>
-          <p class="menu-item-note">前菜からドルチェまでの全◯品</p>
-          <div class="menu-item">
-            <span class="name serif">アラカルト</span>
-            <span class="dots"></span><span class="price">¥000〜</span>
-          </div>
-          <p class="menu-item-note">パスタ・肉料理・魚料理など多数</p>
-          <div class="menu-item">
-            <span class="name serif">グラスワイン</span>
-            <span class="dots"></span><span class="price">¥000〜</span>
-          </div>
-          <p class="menu-item-note">料理に合うワインをご提案します</p>
-          <p class="menu-foot">※仕入れ状況により内容が変わります。アレルギーはお気軽にご相談ください。</p>
+          <p class="chalk-note">※ 魚・肉料理は温野菜・パン又はライス付き。仕入れにより内容が変わります。</p>
         </div>
+
       </div>
-      <p class="sample-note">※ メニュー名・価格はサンプルです。実際の内容に差し替えます。</p>
+      <p class="sample-note">※ 取材記事の写真をもとにした内容です。最新の価格・メニューに合わせて調整してください。</p>
     </section>
   </div>
 
@@ -509,15 +697,34 @@ footer small{font-size:.78rem;letter-spacing:.14em}
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var targets = document.querySelectorAll(
-    '.sec-head, .about-text, .about-photo, .menu-card, .sample-note, .polaroid, .news-list li, .sns-box, .access dl, .map-ph'
+    '.sec-head, .about-text, .about-photo, .paper-card, .chalkboard, .sample-note, .polaroid, .news-list li, .sns-box, .access dl, .map-ph'
   );
   targets.forEach(function(el){ el.classList.add('reveal'); });
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
     });
-  },{threshold:.15});
+  },{threshold:.12});
   targets.forEach(function(el){ io.observe(el); });
+
+  // 黒板・紙メニューの中身を1行ずつ順番に表示
+  var groups = document.querySelectorAll('.chalkboard, .paper-card');
+  groups.forEach(function(group){
+    var rows = group.querySelectorAll('.chalk-item, .chalk-cat, .course-box, .set-line');
+    rows.forEach(function(row, i){
+      row.classList.add('reveal');
+      row.style.transitionDelay = Math.min(i * 70, 900) + 'ms';
+    });
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          rows.forEach(function(r){ r.classList.add('is-in'); });
+          io2.disconnect();
+        }
+      });
+    },{threshold:.15});
+    io2.observe(group);
+  });
 })();
 </script>
 </body>
